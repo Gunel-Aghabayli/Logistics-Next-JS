@@ -34,6 +34,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import myImage from '../public/image 19 (2).png'
 // import Avatar from '@/app/images/avatar.png';
 // import Logo from '@/app/images/LogoHeader.svg'
 
@@ -68,7 +69,7 @@ export default function RootLayout({ children }) {
               <li>
                 <a href="" className="flex items-center p-2 text-gray-900 rounded-lg group">
                   <Image
-                   
+                    src={myImage}
                     width={160}
                     height={30}
                     className="mb-4"
@@ -82,13 +83,13 @@ export default function RootLayout({ children }) {
                 </Link>
               </li>
               <li>
-                <a href="/#" className="flex items-center p-2 rounded-lg group">
+                <a href="/drivers" className="flex items-center p-2 rounded-lg group">
                   <BadgeIcon className="text-gray-400" />
                   <span className="flex-1 ms-3 whitespace-nowrap">Sürücülər</span>
                 </a>
               </li>
               <li>
-                <Link href={"/drivers"} className="flex items-center p-2 rounded-lg group">
+                <Link href={"/transport"} className="flex items-center p-2 rounded-lg group">
                   <LocalShippingIcon className="text-gray-400" />
                   <span className="flex-1 ms-3 whitespace-nowrap">Nəqliyyat</span>
                 </Link>
