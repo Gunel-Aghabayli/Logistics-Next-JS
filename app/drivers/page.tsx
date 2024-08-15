@@ -81,8 +81,7 @@
 // };
 
 // export default DataTable;
-"use client"
-
+"use client";
 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -106,6 +105,7 @@ const DataTable: React.FC = () => {
       refrigerator: false,
     })
   );
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null); // For single row selection by index
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editingId, setEditingId] = useState<string>('');
   const [page, setPage] = useState(1);
@@ -117,10 +117,12 @@ const DataTable: React.FC = () => {
       ...newRows[index],
       [key]: !(newRows[index][key] as boolean),
     };
-  
     setRows(newRows);
   };
-  
+
+  const handleRowSelectionChange = (index: number) => {
+    setSelectedIndex(prevSelectedIndex => (prevSelectedIndex === index ? null : index)); // Toggle selection by index
+  };
 
   const handleEditClick = (index: number) => {
     setEditingIndex(index);
@@ -167,6 +169,7 @@ const DataTable: React.FC = () => {
       <table className="min-w-full bg-white">
         <thead>
           <tr>
+            <th className="py-2 px-4 text-center">Select</th>
             <th className="py-2">No</th>
             <th className="py-2">D.Q.N.</th>
             <th className="py-2">Şirkət maşını</th>
@@ -178,6 +181,13 @@ const DataTable: React.FC = () => {
         <tbody>
           {paginatedRows.map((row, index) => (
             <tr key={index + (page - 1) * rowsPerPage} className="border-b">
+              <td className="py-2 px-4 text-center">
+                <input
+                  type="checkbox"
+                  checked={selectedIndex === index + (page - 1) * rowsPerPage} // Only one checkbox can be checked at a time by index
+                  onChange={() => handleRowSelectionChange(index + (page - 1) * rowsPerPage)} // Toggle selection by index
+                />
+              </td>
               <td className="py-2 px-4 text-center">
                 {String(index + 1 + (page - 1) * rowsPerPage).padStart(2, '0')}
               </td>
@@ -270,3 +280,6 @@ const DataTable: React.FC = () => {
 };
 
 export default DataTable;
+
+
+

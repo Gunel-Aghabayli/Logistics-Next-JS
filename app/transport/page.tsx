@@ -264,7 +264,7 @@ export default function DataTable() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredRows, setFilteredRows] = useState<RowData[]>([]);
   const [page, setPage] = useState(1);
-  const rowsPerPage = 5; // Number of rows per page
+  const rowsPerPage = 5; 
 
   type RowData = {
     id: number;
@@ -274,7 +274,7 @@ export default function DataTable() {
     email: string;
   };
 
-  // Initialize rows with sample data for debugging
+  
   useEffect(() => {
     const sampleData: RowData[] = [
       { id: 1, ad: 'John', soyad: 'Doe', phone: '555-0100', email: 'john.doe@example.com' },
@@ -290,13 +290,13 @@ export default function DataTable() {
     ];
 
     setRows(sampleData);
-    setFilteredRows(sampleData);  // Initialize filteredRows with all data
+    setFilteredRows(sampleData);  
   }, []);
 
   const handleDelete = (id: number) => {
     const updatedRows = rows.filter((row) => row.id !== id);
     setRows(updatedRows);
-    setFilteredRows(updatedRows); // Update the filteredRows as well
+    setFilteredRows(updatedRows); 
   };
 
   const handleEdit = (row: RowData) => {
@@ -315,7 +315,7 @@ export default function DataTable() {
         row.id === currentRow.id ? currentRow : row
       );
       setRows(updatedRows);
-      setFilteredRows(updatedRows); // Update the filteredRows as well
+      setFilteredRows(updatedRows); 
       handleClose();
     }
   };
@@ -339,7 +339,7 @@ export default function DataTable() {
       row.soyad.toLowerCase().includes(term)
     );
     setFilteredRows(filtered);
-    setPage(1); // Reset to the first page when search changes
+    setPage(1); 
   };
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -374,7 +374,7 @@ export default function DataTable() {
     },
   ];
 
-  // Calculate the rows to display based on the current page
+ 
   const paginatedRows = filteredRows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
@@ -403,7 +403,7 @@ export default function DataTable() {
         columns={columns}
        
         checkboxSelection
-        hideFooter // Hide the footer that shows "Rows per page" and range info
+        hideFooter
       />
       <Pagination
         count={Math.ceil(filteredRows.length / rowsPerPage)}
