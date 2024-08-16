@@ -256,6 +256,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 
+
 export default function DataTable() {
   const router = useRouter();
   const [rows, setRows] = useState<RowData[]>([]);

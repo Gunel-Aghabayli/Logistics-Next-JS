@@ -115,7 +115,9 @@
 import React, { useEffect, useState } from 'react';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
-
+import { ButtonGroup,Button, IconButton, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { useSearchParams } from 'next/navigation';
 
 interface CardProps {
   number: string;
@@ -142,10 +144,8 @@ const CardComponent: React.FC<CardProps> = ({
 }) => {
   
   return (
-   
+   <div className="max-w-sm rounded overflow-hidden shadow-lg bg-indigo-600 text-white p-6 w-[40%] m-4">
     
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-indigo-600 text-white p-6 w-[40%] m-4">
-      
       <div className="flex gap-[13%] items-center mb-4">
         <div>
           <p className="text-sm font-bold">Nömrə</p>
@@ -192,7 +192,7 @@ const CardComponent: React.FC<CardProps> = ({
       <hr className='border-t-1 border-gray-400 -mx-6 height-[1px]'/>
       <div className="flex items-center mt-4">
         <img
-          src="https://via.placeholder.com/40"
+          src="#"
           alt="Driver"
           className="rounded-full w-10 h-10 mr-3"
         />
@@ -211,9 +211,12 @@ const CardComponent: React.FC<CardProps> = ({
 
 function Page() {
   const [cardData, setCardData] = useState<CardProps[]>([]);
-
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const searchParams = useSearchParams();
+  
+  
   useEffect(() => {
-    // Simulate fetching 5 cards' data
+   
     const fetchData = async () => {
       const data = [
         {
@@ -278,9 +281,44 @@ function Page() {
 
     fetchData();
   }, []);
+  const handleSearch = () => {
+    const filteredData = cardData.filter((data) =>
+      data.driverName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setCardData(filteredData);
+  };
 
   return (
+    <div>
+      <div>
+  <ButtonGroup variant="outlined" aria-label="Basic button group">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+  <Button>Four</Button>
+  <Button>Five</Button>
+  </ButtonGroup>
+ 
+  <span className='border border-gray-200 p-2 rounded-sm'>
+  <IconButton onClick={handleSearch} >
+          <SearchIcon />
+        </IconButton>
+  <TextField 
+            sx={{
+              "& fieldset": { border: 'none' },
+            }}
+          variant="outlined"
+          size="small"
+          
+          placeholder="Axtarış"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </span>
+      
+    </div>
     <div className="flex justify-center items-center min-h-screen bg-gray-100 flex-wrap">
+  
       {cardData.map((data, index) => (
         <CardComponent
           key={index}
@@ -296,7 +334,8 @@ function Page() {
         />
       ))}
     </div>
-  );
+  </div>
+);
 }
 
 export default Page;
