@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
                 </a>
               </li>
               <li>
-                <Link href={"/controlPanel"} className="flex items-center p-2 rounded-lg group">
+                <Link href={"/panel"} className="flex items-center p-2 rounded-lg group">
                   <GridViewIcon className="text-gray-400" />
                   <span className="ms-3 text-black">İdarə paneli</span>
                 </Link>

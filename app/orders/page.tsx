@@ -118,6 +118,13 @@ import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import { ButtonGroup,Button, IconButton, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchParams } from 'next/navigation';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Box, Tab } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Image from 'next/image';
+import orderImg from '../../public/10613153_10098 1.png'
+
 
 interface CardProps {
   number: string;
@@ -144,15 +151,16 @@ const CardComponent: React.FC<CardProps> = ({
 }) => {
   
   return (
-   <div className="max-w-sm rounded overflow-hidden shadow-lg bg-indigo-600 text-white p-6 w-[40%] m-4">
     
-      <div className="flex gap-[13%] items-center mb-4">
+   <div className="max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white">
+    
+    <div className="flex gap-[13%] items-center mb-4">
         <div>
-          <p className="text-sm font-bold">Nömrə</p>
+          <p className="text-sm  text-headColor">Nömrə</p>
           <p className="text-lg">{number}</p>
         </div>
         <div>
-          <p className="text-sm font-bold">Status</p>
+          <p className="text-sm  text-headColor">Status</p>
           <p
             className={`text-lg ${
               status === 'Yolda' ? 'text-yellow-300' : 'text-green-300'
@@ -165,27 +173,27 @@ const CardComponent: React.FC<CardProps> = ({
       <hr className='border-t-1 border-gray-400 -mx-6 p-2'/>
       <div className="flex gap-[10px] justify-between">
         <div className="mb-4">
-          <p className="text-sm font-bold mb-1">Gediş</p>
+          <p className="text-sm  mb-1 text-headColor">Gediş</p>
           
           <p className="text-sm">{departure}</p>
         </div>
         <div className="mb-4">
-          <p className="text-sm font-bold mb-1">Gəliş</p>
+          <p className="text-sm mb-1 text-headColor">Gəliş</p>
           <p className="text-sm">{arrival}</p>
         </div>
       </div>
       <hr className='border-t-1 border-gray-400 -mx-6 p-2'/>
       <div className="flex justify-between mb-4">
         <div>
-          <p className="text-sm font-bold">Müştəri</p>
+          <p className="text-sm  text-headColor">Müştəri</p>
           <p className="text-lg">{customer}</p>
         </div>
         <div>
-          <p className="text-sm font-bold">Çəki</p>
+          <p className="text-sm text-headColor">Çəki</p>
           <p className="text-lg">{weight}</p>
         </div>
         <div>
-          <p className="text-sm font-bold">Qiymət</p>
+          <p className="text-sm text-headColor">Qiymət</p>
           <p className="text-lg">{price}</p>
         </div>
       </div>
@@ -198,13 +206,14 @@ const CardComponent: React.FC<CardProps> = ({
         />
         <div>
           <p className="font-bold">{driverName}</p>
-          <p className="text-sm">{driverRole}</p>
+          <p className="text-sm text-headColor">{driverRole}</p>
         </div>
         <div className="flex gap-[10px] ml-auto">
           <MapsUgcIcon />
           <PhoneOutlinedIcon />
         </div>
       </div>
+      
     </div>
   );
 };
@@ -276,7 +285,7 @@ function Page() {
         },
       ];
 
-      setCardData(data); // Set the card data
+      setCardData(data); 
     };
 
     fetchData();
@@ -287,19 +296,32 @@ function Page() {
     );
     setCardData(filteredData);
   };
+  const [value, setValue] = useState('1'); 
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+  
+
 
   return (
     <div>
-      <div>
-  <ButtonGroup variant="outlined" aria-label="Basic button group">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-  <Button>Four</Button>
-  <Button>Five</Button>
-  </ButtonGroup>
- 
-  <span className='border border-gray-200 p-2 rounded-sm'>
+      
+      
+      <div className='relative'>
+        
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label="Hamısı" value="1" />
+            <Tab label="Gözləmədə(20)" value="2" />
+            <Tab label="Yola hazır(10)" value="3" />
+            <Tab label="Yolda(19)" value='4'/>
+            <Tab label="Çatdırılmış(9)" value='5'/>
+          </TabList>
+        </Box>
+        <TabPanel value="1">
+        <span className='border border-gray-200 rounded-sm absolute top-2 right-10'>
   <IconButton onClick={handleSearch} >
           <SearchIcon />
         </IconButton>
@@ -316,8 +338,63 @@ function Page() {
         />
       </span>
       
+      <div className="grid  grid-cols-3 bg-gray-100 ">
+      <div className="flex flex-col justify-center items-center max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white">
+      {/* Image */}
+      <div className="mb-1">
+        <Image
+           src={orderImg}
+          alt="Delivery"
+          className="w-60 h-30"
+        />
+      </div>
+      <h2 className="text-xl font-bold text-gray-800 mb-2">Sifariş əlavə et</h2>
+      <p className="text-gray-500 mb-6">Formanı doldurun və yeni bir paket əlavə edin</p>
+      <button className="bg-blue-500 text-white rounded-full p-4 w-12 h-12 flex items-center justify-center hover:bg-blue-600">
+        <span className="text-2xl">+</span>
+      </button>
     </div>
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 flex-wrap">
+     {cardData.map((data, index) => (
+    <CardComponent
+      key={index}
+      number={data.number}
+      status={data.status}
+      departure={data.departure}
+      arrival={data.arrival}
+      customer={data.customer}
+      weight={data.weight}
+      price={data.price}
+      driverName={data.driverName}
+      driverRole={data.driverRole}
+    />
+  ))}
+</div>
+       </TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="4">Item Four</TabPanel>
+        <TabPanel value="5">Item Five</TabPanel>
+      </TabContext>
+ 
+  {/* <span className='border border-gray-200 p-2 rounded-sm'>
+  <IconButton onClick={handleSearch} >
+          <SearchIcon />
+        </IconButton>
+  <TextField 
+            sx={{
+              "& fieldset": { border: 'none' },
+            }}
+          variant="outlined"
+          size="small"
+          
+          placeholder="Axtarış"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </span> */}
+      
+    </div>
+    {/* <div className="flex justify-center items-center min-h-screen bg-gray-100 flex-wrap">
   
       {cardData.map((data, index) => (
         <CardComponent
@@ -333,7 +410,8 @@ function Page() {
           driverRole={data.driverRole}
         />
       ))}
-    </div>
+    </div> */}
+  
   </div>
 );
 }

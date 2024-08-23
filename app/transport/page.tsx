@@ -255,6 +255,8 @@ import { useRouter } from 'next/navigation';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
+import { Icon } from '@iconify-icon/react';
+import editLineIcon from '@iconify-icons/mingcute/edit-line';
 
 
 export default function DataTable() {
@@ -265,7 +267,7 @@ export default function DataTable() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredRows, setFilteredRows] = useState<RowData[]>([]);
   const [page, setPage] = useState(1);
-  const rowsPerPage = 5; 
+  const rowsPerPage = 10; 
 
   type RowData = {
     id: number;
@@ -348,27 +350,27 @@ export default function DataTable() {
   };
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'No', width: 70 },
-    { field: 'ad', headerName: 'Ad', width: 130 },
-    { field: 'soyad', headerName: 'Soyad', width: 130 },
-    { field: 'phone', headerName: 'Nömrə', width: 130 },
-    { field: 'email', headerName: 'Email', width: 200 },
+    { field: 'id', headerName: 'No', width: 100, sortable: false, filterable: false, hideable: false, disableColumnMenu: true },
+    { field: 'ad', headerName: 'Ad', width: 200, sortable: false, filterable: false, hideable: false, disableColumnMenu: true },
+    { field: 'soyad', headerName: 'Soyad', width: 200, sortable: false, filterable: false, hideable: false, disableColumnMenu: true },
+    { field: 'phone', headerName: 'Nömrə', width: 200, sortable: false, filterable: false, hideable: false, disableColumnMenu: true },
+    { field: 'email', headerName: 'Email', width: 300, sortable: false, filterable: false, hideable: false, disableColumnMenu: true },
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 150,
+      width: 200,
+      sortable: false,
+      filterable: false,
+      hideable: false,
+      disableColumnMenu: true, 
       renderCell: (params) => {
         const { row } = params;
         if (!row) return null;
 
         return (
           <>
-            <IconButton onClick={() => handleEdit(row)}>
-              <EditIcon />
-            </IconButton>
-            <IconButton onClick={() => handleDelete(row.id)}>
-              <DeleteIcon />
-            </IconButton>
+            <Icon onClick={()=>handleEdit(row)} icon={editLineIcon} style={{ fontSize: '24px', color: 'blue' }} />
+            <Icon onClick={()=>handleDelete(row.id)} icon="material-symbols:delete-outline" style={{ fontSize: '24px', color: 'red' }} />
           </>
         );
       },
@@ -379,30 +381,37 @@ export default function DataTable() {
   const paginatedRows = filteredRows.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <div style={{ display: 'flex', marginBottom: 16 }}>
-        <TextField
-          name="search"
-          placeholder="Search Ad or Soyad"
-          value={searchTerm}
-          onChange={handleSearchTermChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-          fullWidth
-        />
-        <Button variant="contained" color="primary" onClick={() => router.push('/register')} style={{ marginLeft: '8px' }}>
-          Register
+    <div style={{ height: 590, width: '100%'}}>
+      <div style={{ display: 'flex', marginBottom: 25, marginTop:25, height:"40px"}}>
+      <TextField 
+  name="search"
+  placeholder="Search Ad or Soyad"
+  value={searchTerm}
+  onChange={handleSearchTermChange}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+        <SearchIcon />
+      </InputAdornment>
+    ),
+    style: {
+      height: '40px', 
+      padding: '2',  
+      fontSize: '14px' 
+    }
+  }}
+  style={{
+    height: '30px',  
+    fontSize: '14px'  
+  }}
+/>
+    <Button variant="contained" color="primary" onClick={() => router.push('/driversRegister')} style={{ marginLeft: '780px', width:'200px',textTransform: 'capitalize' }}>
+          Qeydiyyatdan keç
         </Button>
       </div>
       <DataGrid
         rows={paginatedRows}
         columns={columns}
-       
         checkboxSelection
         hideFooter
       />
@@ -414,7 +423,7 @@ export default function DataTable() {
         style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}
       />
 
-      {/* Edit Modal */}
+     
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Row</DialogTitle>
         <DialogContent>
