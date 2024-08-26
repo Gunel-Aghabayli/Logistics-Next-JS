@@ -12,7 +12,7 @@ import mainImage from "../../public/12334781_4936931 1.png"
 import Rating from '@mui/material/Rating';
 import customerImg from '../../public/Ellipse 77.jpg'
 import { DataGrid } from '@mui/x-data-grid';
-
+import smallİmg from '../../public/Ellipse 79.png'
 
 interface Row {
   id: number;
@@ -20,16 +20,16 @@ interface Row {
   track: string;
   status: string;
   sent:''
-  arrived:number
+  arrived:any;
 }
 
 const initialRows: Row[] = [
-  { id: 1, name: 'Murad Kərimov', track: 'BHL332499', status:'Yoldadır',sent:'',arrived:'02.03.24' },
-  { id: 2, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Çatdırılıb' ,sent:'' ,arrived:'02.03.24'},
-  { id: 3, name: 'Murad Kərimov', track: 'BHL332499' , status:'Yoldadır' ,sent:'' ,arrived:'02.03.24'},
-  { id: 4, name: 'Murad Kərimov', track: 'BHL332499' , status:'Yoldadır',sent:'' ,arrived:'02.03.24'},
-  { id: 5, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Yoldadır' ,sent:'' ,arrived:'02.03.24'},
-  { id: 6, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Yoldadır',sent:'' ,arrived:'02.03.24'},
+  { id: 1, name: 'Murad Kərimov', track: 'BHL332499', status:'Yoldadır',sent:'',arrived: 0o234 },
+  { id: 2, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Çatdırılıb' ,sent:'' ,arrived: 0o234},
+  { id: 3, name: 'Murad Kərimov', track: 'BHL332499' , status:'Yoldadır' ,sent:'' ,arrived: 0o234},
+  { id: 4, name: 'Murad Kərimov', track: 'BHL332499' , status:'Yoldadır',sent:'' ,arrived: 0o234},
+  { id: 5, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Yoldadır' ,sent:'' ,arrived: 0o234},
+  { id: 6, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Yoldadır',sent:'' ,arrived:0o234 }
 ];
 
 function page() {
@@ -109,107 +109,46 @@ function page() {
                       <h1 className='font-semibold'>Bugünki sifarişlər</h1>
                       </div>
                         <div  className=' mt-8 shadow-xl'>
-              <div className=' uppercase   bg-[#5252AD] bg-opacity-10 w-[100%] '>
-  {/* <ul className='flex  ' >
-    <li className='px-5  mx-4  py-2 text-[12px] text-[#2E2E9C] font-semibold'>Müsteri</li>
-    <li className='px-5  py-2 text-[10px] text-[#2E2E9C] font-semibold'>  Tracking İD</li>
-    <li className='px-5  py-2 text-[12px] text-[#2E2E9C] font-semibold'>Status</li>
-    <li className='px-5  py-2 text-[12px] text-[#2E2E9C] font-semibold'> Göndərilib</li>
-    <li className='px-5  py-2 text-[12px] text-[#2E2E9C] font-semibold'> Çatdırılıb </li>
-  </ul> */}
-      
-                  </div>
-                  <ul className='bg-width '>
-        
-      </ul>
-       <div style={{ height: 400, width: '600px', fontSize:'10px'}}>
+            
+           
+      <div style={{ height: 400, width: '600px', fontSize: '10px' }}>
       <DataGrid
-        rows={rows}
-        columns={[
-          { field: 'id',headerName:'', width: 30 },
-          { field: 'name', headerName: 'Müştəri', width: 150 },
-          { field: 'track', headerName: 'Tracking İD', width: 100 },
-          { field: 'status', headerName: 'Status', width: 100 },
-          { field: 'sent', headerName: 'Göndərilib', width: 90 },
-          { field: 'arrived', headerName: 'Çatdırılıb', width: 90 },
-        ]}
-        loading={isLoading}
-        disableSelectionOnClick
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-      />
-    </div>
-                        </div>
-                        {/* <div className="overflow-x-auto">
-      <table className="table-auto w-full border-collapse border border-gray-300">
-   
-        <tbody>
-          <tr className="hover:bg-gray-100">
-            <td className="p-2 border border-gray-300">01</td>
-            <td className="p-2 border border-gray-300 flex items-center">
-              <img
-                src="/murad.jpg"
-                alt="Murad Kərimov"
-                className="w-8 h-8 rounded-full mr-2"
+                rows={rows}
+                columns={[
+                  { field: 'id', headerName: '', width: 30 },
+                  {
+                    field: 'name',
+                    headerName: 'Müştəri',
+                    width: 150,
+                    renderCell: (params) => (
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Image
+                          src={customerImg}
+                          alt="Customer"
+                          width={30}
+                          height={30}
+                          style={{ borderRadius: '50%', marginRight: '10px' }}
+                        />
+                        {params.value}
+                      </div>
+                    ),
+                  },
+                  { field: 'track', headerName: 'Tracking İD', width: 100 },
+                  { field: 'status', headerName: 'Status', width: 100 },
+                  { field: 'sent', headerName: 'Göndərilib', width: 90 },
+                  { field: 'arrived', headerName: 'Çatdırılıb', width: 90 },
+                ]}
+                loading={isLoading}
+                pageSize={100} 
+                disableColumnMenu 
+                disableColumnFilter 
+                disableColumnSelector 
+                disableSorting 
+                hideFooter 
               />
-              Murad Kərimov
-            </td>
-            <td className="p-2 border border-gray-300">BHL332499</td>
-            <td className="p-2 border border-gray-300">Yoldadır</td>
-            <td className="p-2 border border-gray-300">02.03.24</td>
-            <td className="p-2 border border-gray-300 text-center">...</td>
-          </tr>
-
-          <tr className="hover:bg-gray-100">
-            <td className="p-2 border border-gray-300">02</td>
-            <td className="p-2 border border-gray-300 flex items-center">
-              <img
-                src="/kenan.jpg"
-                alt="Kənan Məmmədov"
-                className="w-8 h-8 rounded-full mr-2"
-              />
-              Kənan Məmmədov
-            </td>
-            <td className="p-2 border border-gray-300">BHL332499</td>
-            <td className="p-2 border border-gray-300">Çatdırılıb</td>
-            <td className="p-2 border border-gray-300">02.03.24</td>
-            <td className="p-2 border border-gray-300 text-center">...</td>
-          </tr>
-
-          <tr className="hover:bg-gray-100">
-            <td className="p-2 border border-gray-300">03</td>
-            <td className="p-2 border border-gray-300 flex items-center">
-              <img
-                src="/murad.jpg"
-                alt="Murad Kərimov"
-                className="w-8 h-8 rounded-full mr-2"
-              />
-              Murad Kərimov
-            </td>
-            <td className="p-2 border border-gray-300">BHL332499</td>
-            <td className="p-2 border border-gray-300">Yoldadır</td>
-            <td className="p-2 border border-gray-300">02.03.24</td>
-            <td className="p-2 border border-gray-300 text-center">...</td>
-          </tr>
-
-          <tr className="hover:bg-gray-100">
-            <td className="p-2 border border-gray-300">04</td>
-            <td className="p-2 border border-gray-300 flex items-center">
-              <img
-                src="/murad.jpg"
-                alt="Murad Kərimov"
-                className="w-8 h-8 rounded-full mr-2"
-              />
-              Murad Kərimov
-            </td>
-            <td className="p-2 border border-gray-300">BHL332499</td>
-            <td className="p-2 border border-gray-300">Yoldadır</td>
-            <td className="p-2 border border-gray-300">02.03.24</td>
-            <td className="p-2 border border-gray-300 text-center">...</td>
-          </tr>
-           </tbody>
-      </table>
-    </div> */}
+            </div>
+            </div>
+                      
         </div>
        </div>
        
@@ -229,14 +168,14 @@ function page() {
       </div>
       <p className="text-gray-700">ID - AAA123456</p>
 
-      {/* Progress Bar */}
+    
       <div className="flex items-center justify-between my-4">
-        {/* First 2 points are blue */}
+       
         <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
         <div className="flex-1 h-1 bg-blue-600"><p className='text-[10px] my-4'>Sifariş alınıb</p></div>
         <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
 
-        {/* Remaining 3 points are gray */}
+      
         <div className="flex-1 h-1 bg-gray-400"><p className='text-[10px]  my-4'>Hazırlanır</p></div>
         <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
         <div className="flex-1 h-1 bg-gray-400"><p className='text-[10px]  my-4'>Hazırdır</p></div>
@@ -245,7 +184,7 @@ function page() {
         <div className="w-4 h-4 bg-gray-400 rounded-full"><p className='text-[10px]  my-5 pl-0'>Çatdırılıb</p></div>
         
       </div>
-     {/* From and To Locations */}
+     
       <div className="flex justify-between p-6">
         <div>
           <h3 className="text-gray-500">From</h3>
@@ -262,6 +201,7 @@ function page() {
       <div className='w-[70%] max-w-md mx-auto bg-white rounded-lg shadow-md p-6 mt-10 grid grid-cols-2'>
         <Image src={customerImg} />
      <div className='customer-text'>
+      
     <h1 className='font-semibold text-[#181818]'>Murad Kərimov</h1>
     <p className='text-gray-300' >Müstərini qiymətləndir</p>
     <div className=' flex justify-between items-center w-full mt-4'>
