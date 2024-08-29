@@ -46,7 +46,7 @@ export default function Home() {
              <div className="flex items-center justify-between mb-6">
                <label className="flex items-center">
                 </label>
-               <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500">Şifrənizi unutmusunuz?</a>
+               <a href="/forgetPassword" className="text-sm text-indigo-600 hover:text-indigo-500">Şifrənizi unutmusunuz?</a>
              </div>
              <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-bgBlue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-10">Daxil ol</button>
            </form>
@@ -55,4 +55,5 @@ export default function Home() {
        
    </main>
   );
+  
 }

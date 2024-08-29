@@ -331,16 +331,13 @@ function Page() {
             }}
           variant="outlined"
           size="small"
-          
           placeholder="Axtarış"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </span>
-      
       <div className="grid  grid-cols-3 bg-gray-100 ">
       <div className="flex flex-col justify-center items-center max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white">
-      {/* Image */}
       <div className="mb-1">
         <Image
            src={orderImg}
@@ -350,9 +347,9 @@ function Page() {
       </div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">Sifariş əlavə et</h2>
       <p className="text-gray-500 mb-6">Formanı doldurun və yeni bir paket əlavə edin</p>
-      <button className="bg-blue-500 text-white rounded-full p-4 w-12 h-12 flex items-center justify-center hover:bg-blue-600">
-        <span className="text-2xl">+</span>
-      </button>
+      <a href='/orderRegister'  className="bg-blue-500 text-white rounded-full p-4 w-12 h-12 flex items-center justify-center hover:bg-blue-600">
+        <span className="text-2xl mb-1">+</span>
+      </a>
     </div>
      {cardData.map((data, index) => (
     <CardComponent

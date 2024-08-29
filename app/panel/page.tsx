@@ -81,13 +81,13 @@ function page() {
                               </div>
                               <div className="flex shadow-md text-gray-300 text-opacity-25 items-center p-3 justify-between bg-white w-[31%] rounded">
                                    {/* icon elave ele */}
-                                  <div className="details-text grid grid-cols-2 justify-items-center">
+                                  <div className="details-text grid grid-cols-2 justify-items-center gap-8">
                                     <div className='bg-gray-100 h-[48px] p-2 rounded-md'>
                                   <StoreIcon color="primary"/>
                                   </div>
                                   <div>
                                       <h2 className='font-semibold text-xl text-[#4b4b4b]'>17</h2>
-                                      <p className=' w-[100px] text-sm text-[#C2C2C2]'>Gözləyən sifariş</p>
+                                      <p className=' w-[140px] text-sm text-[#C2C2C2] pr-4'>Gözləyən sifariş</p>
                                   </div>
                                   </div>
                               </div>
@@ -112,14 +112,14 @@ function page() {
             
            
       <div style={{ height: 400, width: '600px', fontSize: '10px' }}>
-      <DataGrid
+      <DataGrid 
                 rows={rows}
-                columns={[
+                columns={[ 
                   { field: 'id', headerName: '', width: 30 },
                   {
                     field: 'name',
                     headerName: 'Müştəri',
-                    width: 150,
+                    width: 170,
                     renderCell: (params) => (
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Image
@@ -134,16 +134,16 @@ function page() {
                     ),
                   },
                   { field: 'track', headerName: 'Tracking İD', width: 100 },
-                  { field: 'status', headerName: 'Status', width: 100 },
+                  { field: 'status', headerName: 'Status', width: 90 },
                   { field: 'sent', headerName: 'Göndərilib', width: 90 },
                   { field: 'arrived', headerName: 'Çatdırılıb', width: 90 },
                 ]}
                 loading={isLoading}
-                pageSize={100} 
+                // pageSize={100} 
                 disableColumnMenu 
                 disableColumnFilter 
                 disableColumnSelector 
-                disableSorting 
+                // disableSorting 
                 hideFooter 
               />
             </div>
@@ -172,7 +172,7 @@ function page() {
       <div className="flex items-center justify-between my-4">
        
         <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
-        <div className="flex-1 h-1 bg-blue-600"><p className='text-[10px] my-4'>Sifariş alınıb</p></div>
+        <div className="flex-1 h-1 bg-blue-600"><p className='text-[10px] my-4 '>Sifariş alınıb</p></div>
         <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
 
       
@@ -181,11 +181,9 @@ function page() {
         <div className="flex-1 h-1 bg-gray-400"><p className='text-[10px]  my-4'>Hazırdır</p></div>
         <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
         <div className="flex-1 h-1 bg-gray-400"><p className='text-[10px]  my-4'>Yoldadır</p></div>
-        <div className="w-4 h-4 bg-gray-400 rounded-full"><p className='text-[10px]  my-5 pl-0'>Çatdırılıb</p></div>
-        
-      </div>
-     
-      <div className="flex justify-between p-6">
+        <div className="w-4 h-4 bg-gray-400 rounded-full"><p className='text-[10px] my-5'>Çatdırılıb</p></div>
+        </div>
+     <div className="flex justify-between p-6">
         <div>
           <h3 className="text-gray-500">From</h3>
           <p className="text-blue-700 font-semibold">Ganja</p>

@@ -1,20 +1,3 @@
-// import React from 'react'
-
-// function page() {
-//   return (
-//     <div>
-       
-
-//     </div>
-//   )
-// }
-
-// export default page
-// pages/register.tsx
-
-
-
-// app/register/page.tsx
 'use client';
 import React from 'react'
 
