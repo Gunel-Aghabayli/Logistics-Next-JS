@@ -152,11 +152,11 @@ const CardComponent: React.FC<CardProps> = ({
   
   return (
     
-   <div className="max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white">
+   <div className="max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white hover:bg-blue-700 hover:text-white ">
     
     <div className="flex gap-[13%] items-center mb-4">
         <div>
-          <p className="text-sm  text-headColor">Nömrə</p>
+          <p className="text-sm  text-headColor  ">Nömrə</p>
           <p className="text-lg">{number}</p>
         </div>
         <div>
@@ -306,11 +306,8 @@ function Page() {
 
   return (
     <div>
-      
-      
       <div className='relative'>
-        
-      <TabContext value={value}>
+        <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Hamısı" value="1" />
@@ -337,7 +334,7 @@ function Page() {
         />
       </span>
       <div className="grid  grid-cols-3 bg-gray-100 ">
-      <div className="flex flex-col justify-center items-center max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white">
+      <div className="flex flex-col justify-center items-center max-w-sm rounded overflow-hidden shadow-lg  text-textColor p-6  m-4 bg-white  ">
       <div className="mb-1">
         <Image
            src={orderImg}
@@ -352,7 +349,7 @@ function Page() {
       </a>
     </div>
      {cardData.map((data, index) => (
-    <CardComponent
+    <CardComponent 
       key={index}
       number={data.number}
       status={data.status}

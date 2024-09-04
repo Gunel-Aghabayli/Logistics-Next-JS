@@ -503,7 +503,7 @@ export default function DataTable() {
         count={Math.ceil(filteredRows.length / rowsPerPage)}
         page={page}
         onChange={handlePageChange}
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 20, marginLeft:500 }}
       />
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Row</DialogTitle>
