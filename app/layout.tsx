@@ -61,6 +61,16 @@ export default function RootLayout({ children }) {
         return 'Sifarişlər';
       case '/user':
         return 'User';
+      case '/driversRegister':
+        return 'Sürücülər';
+      case '/forgetPassword':
+        return 'Şifrəni unutdum';
+      case '/orderRegister':
+        return 'Sifarişlər';
+      case '/transportRegister':
+        return 'Nəqliyyat';
+      case '/trRegister2':
+        return 'Nəqliyyat';
       default:
         return 'Welcome';
     }
@@ -76,7 +86,17 @@ export default function RootLayout({ children }) {
       case '/orders':
         return 'Sifarişlərin qəbulu';
       case '/user':
-        return 'Userin qedyiyyatı';
+        return 'Userin qeydiyyatı';
+      case '/driversRegister':
+        return 'Sürücülərin eydiyyatı';
+      case '/forgetPassword':
+        return 'Şifrəni yenilə';
+      case '/orderRegister':
+        return 'Sifarişlərin qəbulu';
+      case '/transportRegister':
+          return 'Nəqliyyatın qəbulu';
+      case '/trRegister2':
+          return 'Nəqliyyatın qəbulu';
       default:
         return 'Page';
   }
@@ -145,8 +165,11 @@ export default function RootLayout({ children }) {
           <div>
            <nav className="bg-white border-gray-200">
               <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                {getHeadline()}
-                {getLine()}
+                <div className="flex flex-col gap "> 
+                  <div className="text-2xl text-bgBlue font-semibold">{getHeadline()}</div>
+               <div className="text-sm text-customGray"> {getLine()}</div>
+</div>
+               
                 {/* <a href="https://flowbite.com/" className="flex-col justify-start">
                   <span className="self-center text-3xl mb-3 text-[#2e2e9c] font-semibold whitespace-nowrap ">Sürücülər</span>
                   <h6 className="text-[14px] text-gray-400">Sürücülərin qeydiyyatı</h6>

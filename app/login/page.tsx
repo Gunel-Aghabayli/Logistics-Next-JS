@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image';
-import myImage from '../../public/image 11 (2).png';
+import myImage from '../../image 11 (2).png';
 import { Icon } from '@iconify/react';
 import eyeCloseLine from '@iconify-icons/mingcute/eye-close-line'; 
 import eyeOpenLine from '@iconify-icons/pepicons-pop/eye'; 
