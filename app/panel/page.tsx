@@ -32,7 +32,7 @@ const initialRows: Row[] = [
   { id: 6, name: 'Kənan Məmmədov', track: 'BHL332499' , status:'Yoldadır',sent:'' ,arrived:0o234 }
 ];
 
-function page() {
+function Page() {
   const [rows, setRows] = React.useState<Row[]>(initialRows);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -212,4 +212,4 @@ function page() {
     )
   }
 
-export default page
+export default Page;

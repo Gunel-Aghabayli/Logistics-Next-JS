@@ -1,10 +1,12 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image';
-import myImage from '../../image 11 (2).png';
+import myImage from '../../public//image 11 (2).png';
 import { Icon } from '@iconify/react';
 import eyeCloseLine from '@iconify-icons/mingcute/eye-close-line'; 
 import eyeOpenLine from '@iconify-icons/pepicons-pop/eye'; 
+import { ReactElement } from 'react';
+import { NextPage } from 'next'
 
 export default function Home() {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,5 +57,9 @@ export default function Home() {
        
    </main>
   );
-  
+
 }
+
+  Home.getLayout = function PageLayout(page: ReactElement) {
+    return <>{page}</>;
+  };

@@ -1,7 +1,17 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'; 
+const Page = () => {
+  const router = useRouter();
 
-const page = () => {
+  
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    if (selectedValue === "şəxsi") {
+      router.push('/trRegister2'); 
+    }
+  };
   return (
     <div>
      <div className="flex flex-col mr-0 ml-0 font-[sans-serif] sm:h-screen p-4">
@@ -20,9 +30,10 @@ const page = () => {
             </div>
             <div>
               <label className="text-gray-800 text-sm mb-2 block">Şirkət maşını</label>
-              <select name="cars" id="cars" className='text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500 w-[80%]'>
-                  <option value="şirkət"></option>
-                  <option value="şəxsi"></option>
+              <select name="cars" id="cars" className='text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500 w-[80%]'
+               onChange={handleSelectChange}>
+                  <option value="şirkət">Şirkət</option>
+                  <option value="şəxsi">Şəxsi</option>
               </select>
             </div>
             <div>
@@ -52,4 +63,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

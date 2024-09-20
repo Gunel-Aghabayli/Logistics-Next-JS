@@ -21,8 +21,8 @@ const page = () => {
             <div>
               <label className="text-gray-800 text-sm mb-2 block">Şirkət maşını</label>
               <select name="cars" id="cars" className='text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500 w-[80%]'>
-                  <option value="şirkət"></option>
-                  <option value="şəxsi"></option>
+                  <option value="şirkət">Şirkət</option>
+                  <option value="şəxsi">Şəxsi</option>
               </select>
             </div>
         <div>
